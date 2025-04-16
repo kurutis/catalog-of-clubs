@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Каталог кружков</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="/static/css/index.css" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <div class="row my-4 mx-1 mx-sm-4">
+        <div id="logo-img" class="col-4 col-sm-3">
+            {#            <img id="logo-img" src="/static/img/logo.png" alt="Логотип">#}
+        </div>
+        <h1 class="col-8 col-sm-6 align-content-center text-center">Каталог кружков</h1>
+        <p class="col-12 col-sm-3 align-content-center pt-2 pt-sm-0">Ответственный за дополнительное образование:</p>
+    </div>
+</nav>
+<div id="search-bar" class="container-fluid-sm mx-1 mx-sm-4">
+    <div class="row align-content-center justify-content-center">
+        <form id="search-form" class="col-8 d-flex p-sm-1 px-0 px-sm-4">
+            <label for="search-query" class="me-0 me-sm-4">
+                <img src="/static/img/search.svg">
+            </label>
+            <input id="search-query" class="col-10"
+                   tabindex="1"
+                   placeholder="Искать кружок по названию">
+        </form>
+        <div id="filter-div" class="col-3 ms-1 ms-sm-2 d-flex justify-content-center align-items-center dropdown">
+            <a>Фильтр</a>
+            <div class="dropdown-menu col-12">
+                <form id="filter-form" class="px-4 py-3">
+                    <div class="mb-3">
+
+                        <label for="filter-type" class="form-label">Направленность</label>
+                        <select id="filter-type" class="filter-type">
+                            <option selected></option>
+                            {% for elem in types %}
+                                <option>{{ elem.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="filter-address" class="form-label">Адрес</label>
+                        <select id="filter-address" class="filter-address">
+                            <option selected></option>
+                            {% for elem in addresses %}
+                                <option>{{ elem.address }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="filter-date" class="form-label">Расписание</label>
+                        <select id="filter-date" class="filter-date">
+                            <option selected></option>
+                            <option>Среда</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="filter-age" class="form-label">Возраст</label>
+                        <select id="filter-date" class="filter-date">
+                            <option selected></option>
+                            <option>10-13</option>
+                        </select>
+                        <input type="range" value="12" min="8" max="18"
+                               oninput="this.nextElementSibling.value = this.value">
+                        <output>12</output>
+                    </div>
+                    <div id="filter-price-div">
+                        <div class="p-2" data-price="1">Платно</div>
+                        <div class="p-2" data-price="0">Бесплатно</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-5 gy-4 mx-1 mx-lg-4 mt-1 mb-4">
+    {% for elem in coteries %}
+        <div class="col-12 col-xl-4">
+            <div class="coterie" data-type-id="{{ elem.type.id }}">
+                <div class="inner px-2">
+                    <h2 class="coterie-name" style="color: black;">{{ elem.name }}</h2>
+                    <div>
+                        <p class="p-2 coterie-type-name">{{ elem.type.name }}</p>
+                        <div class="inner-info p-2" >
+                            <p class="coterie-teacher-name"><img src="/static/img/teacher.svg">{{ elem.teacher.name }}
+                            </p>
+                            <p class="coterie-address"><img src="/static/img/address.svg">{{ elem.address.address }}</p>
+                            <p class="coterie-age"><img src="/static/img/age.svg">{{ elem.beg_age }}-{{ elem.end_age }}
+                                лет</p>
+                            <p class="coterie-day"><img src="/static/img/date.svg">{{ elem.day }}</p>
+                            {% if elem.price %}
+                                <p class="coterie-price" data-p="1"><span>Платно</span></p>
+                            {% else %}
+                                <p class="coterie-price" data-p="0"><span>Бесплатно</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons my-2">
+                    <a class="info p-2 px-4">Подробнее</a>
+{#                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1">#}
+{#                        <div class="offcanvas-header">#}
+{#                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Информация</h5>#}
+{#                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"#}
+{#                                    aria-label="Закрыть"></button>#}
+{#                        </div>#}
+{#                        <div class="offcanvas-body">#}
+{#                            <h3>{{ elem.teacher.name }}</h3>#}
+{#                            <img src="{{ elem.teacher.photo_url }}">#}
+{#                            <a href="{{ elem.teacher.link }}">Ссылка</a>#}
+{#                            <p>{{ elem.info }}</p>#}
+{#                        </div>#}
+{#                    </div>#}
+                    <div class="modal" tabindex="-1">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ elem.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Закрыть"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>{{ elem.teacher.name }}</h3>
+                                    <img src="{{ elem.teacher.photo_url }}">
+                                    <a href="{{ elem.teacher.link }}">Ссылка</a>
+                                    <p>{{ elem.info }}</p>
+                                    <p>{{ elem.address.address }}</p>
+                                </div>
+{#                                <div class="modal-footer">#}
+{#                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть#}
+{#                                    </button>#}
+{#                                    <button type="button" class="btn btn-primary">Сохранить изменения</button>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="join p-2 px-4" href="{{ elem.url }}" target="_blank">Записаться</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<footer>
+    <section class="credits">
+        <div>* - Предложение не является публичной офертой</div>
+        <div>Разработка и дизайн: Трофимов Сергей и Зюзичев Иван</div>
+        <div>Свяжитесь с нами: a@bytic.ru</div>
+    </section>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script src="/static/js/index.js"></script>
+</body>
+</html>

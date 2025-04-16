@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+</head>
+<body>
+<h1>Редактирование преподавателей</h1>
+{% for elem in teachers %}
+    <div><a href="{{ url_for("admin.edit_teacher_n", id_=elem.id) }}">{{ elem.name }}</a></div>
+{% endfor %}
+<div style="margin-top: 1em">
+    <input type="button" value="Назад" onclick="window.location.href = '{{ url_for("admin.index") }}'">
+</div>
+{% if message is not none %}
+    <script>alert("{{ message }}")</script>
+{% endif %}
+</body>
+</html>

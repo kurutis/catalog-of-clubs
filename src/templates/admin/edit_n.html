@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<h1>Редактирование</h1>
+<form class="container" method="post">
+    <label for="name">Название</label>
+    <input class="form-control" id="name" name="name" value="{{ coterie.name }}">
+    <label for="type">Тип</label>
+    <select class="form-select" id="type" name="type">
+        {% for elem in types %}
+            <option value="{{ elem.id }}"
+                    {% if coterie.type.id == elem.id %}selected{% endif %}>{{ elem.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="teacher">Преподаватель</label>
+    <select class="form-select" id="teacher" name="teacher">
+        {% for elem in teachers %}
+            <option value="{{ elem.id }}"
+                    {% if coterie.teacher.id == elem.id %}selected{% endif %}>{{ elem.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="address">Адрес</label>
+    <select class="form-select" id="address" name="address">
+        {% for elem in addresses %}
+            <option value="{{ elem.id }}"
+                    {% if coterie.address.id == elem.id %}selected{% endif %}>{{ elem.address }}</option>
+        {% endfor %}
+    </select>
+    <div>
+        <label for="beg-age">Возраст</label><br>
+        <input id="beg-age" name="beg-age" type="number" value="{{ coterie.beg_age }}"><i> -</i>
+        <input id="end-age" name="end-age" type="number" value="{{ coterie.end_age }}">
+    </div>
+    <label for="day">День недели</label>
+    <textarea class="form-control" id="day" name="day">{{ coterie.day }}</textarea>
+    <label class="" for="price">Цена за занятие</label>
+    <input class="form-control" id="price" name="price" type="number" value="{{ coterie.price }}" step="0.01">
+    <label for="info">Информация</label>
+    <textarea class="form-control" id="info" name="info">{{ coterie.info }}</textarea>
+    <label for="url">Ссылка</label>
+    <input class="form-control mb-3" id="url" name="url" value="{{ coterie.url }}">
+    <input type="submit" value="Сохранить">
+    <input type="button" value="Отмена" onclick="window.location = window.location.href">
+    <input type="button" value="Удалить"
+           onclick="if (confirm('Удалить {{ coterie.name }}?\nДействие нельзя отменить')) window.location = '{{ url_for("admin.delete_n", id_=coterie.id) }}'">
+    <input type="button" value="Назад" onclick="window.location.href = '{{ url_for("admin.edit") }}'">
+</form>
+{% if message is not none %}
+    <script>alert("{{ message }}")</script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<h1>Редактирование адреса</h1>
+<form class="container" method="post">
+    <label for="address">Адрес</label>
+    <input class="form-control" id="address" name="address" value="{{ address.address }}">
+    <input type="submit" value="Сохранить">
+    <input type="button" value="Отмена" onclick="window.location = window.location.href">
+    <input type="button" value="Удалить"
+           onclick="if (confirm('Удалить {{ address.address }}?\nДействие нельзя отменить')) window.location = '{{ url_for("admin.delete_address_n", id_=address.id) }}'">
+    <input type="button" value="Назад" onclick="window.location.href = '{{ url_for("admin.edit_address") }}'">
+</form>
+{% if message is not none %}
+    <script>alert("{{ message }}")</script>
+{% endif %}
+</body>
+</html>
