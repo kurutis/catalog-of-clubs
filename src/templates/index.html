@@ -124,34 +124,37 @@
                                          alt="Закрыть"/>
                                     </button>
                                 </div>
-                                <div class="row mt-1 py-2 modal-inner">
-                                    <div class="col-12 col-lg-5 teacher-about">
-                                        <a class="px-4 teacher-name">{{ elem.teacher.name }}</a>
-                                        <div class="teacher-avatar" style="background-image: url('{{ elem.teacher.photo_url }}')"> </div>
-                                        <a class="px-4 teacher-more" href="{{ elem.teacher.link }}" target="_blank">подробнее</a>
-                                    </div>
-                                    <div class="col-12 col-lg-6 mt-4 mt-lg-0 other-info">
-                                        <p class="coterie-info px-2 px-lg-0">{{ elem.info }}</p>
-                                        <div class="day-header" style="background-image: url('../static/img/calenar.svg')">
-                                            <span class="day-addr-span">РАСПИСАНИЕ</span>
-                                            {% for day_p in elem.day.split('\n') %}
-                                                    <p>{{ day_p }}</p>
-                                            {% endfor %}
+                                <div class="container">
+                                    <img class="paper-clip" src="../static/img/paper-clip.svg" alt="">
+                                    <div class="row mt-1 py-2 modal-inner">
+                                        <div class="col-12 col-lg-5 teacher-about">
+                                            <a class="px-4 teacher-name">{{ elem.teacher.name }}</a>
+                                            <div class="teacher-avatar" style="background-image: url('{{ elem.teacher.photo_url }}')"> </div>
+                                            <a class="px-4 teacher-more" href="{{ elem.teacher.link }}" target="_blank">подробнее</a>
                                         </div>
-                                        <div class="addr-content">
-                                            <span class="day-addr-span">АДРЕС</span>
-                                            <p class="blue-shadow">{{ elem.address.address }}</p>
-                                        </div>
-                                        <div class="record">
-                                            {% if elem.price == 0 %}
-                                                <p class="price flex-center"><span>Бесплатно</span></p>
-                                            {% else %}
-                                                <p class="price flex-center"><span
-                                                    class="me-1">{{ elem.price }} рублей</span> за занятие</p>
-                                            {% endif %}
-                                            <div class="flex-center mb-4">
-                                                <a class="modal-join" href="{{ elem.url }}"
-                                                    target="_blank">Записаться</a>
+                                        <div class="col-12 col-lg-6 mt-4 mt-lg-0 other-info">
+                                            <p class="coterie-info px-2 px-lg-0">{{ elem.info }}</p>
+                                            <div class="day-header" style="background-image: url('../static/img/calenar.svg')">
+                                                <span class="day-addr-span">Расписание</span>
+                                                {% for day_p in elem.day.split('\n') %}
+                                                        <p>{{ day_p }}</p>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="addr-content">
+                                                <span class="day-addr-span">Адрес</span>
+                                                <p class="blue-shadow">{{ elem.address.address }}</p>
+                                            </div>
+                                            <div class="record">
+                                                {% if elem.price == 0 %}
+                                                    <p class="price flex-center"><span>Бесплатно</span></p>
+                                                {% else %}
+                                                    <p class="price flex-center"><span
+                                                        class="me-1">{{ elem.price }} рублей</span> за занятие</p>
+                                                {% endif %}
+                                                <div class="flex-center mb-4">
+                                                    <a class="modal-join" href="{{ elem.url }}"
+                                                        target="_blank">Записаться</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

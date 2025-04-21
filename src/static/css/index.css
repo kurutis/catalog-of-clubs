@@ -414,6 +414,11 @@ footer {
     justify-content: space-between;
 }
 
+.container{
+    width: 90%;
+    margin-left: 5%;
+}
+
 .close-modal {
     box-sizing: content-box;
     background: #E6E6E6;
@@ -430,13 +435,14 @@ footer {
 }
 
 .teacher-about{
-    margin-left: 32px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .teacher-name{  
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
     display: block;
     width: 100%;
     margin-bottom: 1rem;
@@ -448,19 +454,27 @@ footer {
     border-radius: 10px;
 }
 
+.paper-clip{
+    z-index: 100;
+    position: absolute;
+    height: 28px;
+    margin-top: 61px;
+    margin-left: -10px;
+}
+
 .teacher-avatar {
     background-size: cover;
     background-repeat: no-repeat;
-    border-radius: 10px;
     height: 450px;
     width: 100%;
 }
 
 .teacher-more{
+    font-family: 'Roboto Slab', serif;
     display: block;
     margin-top: 1rem;
     padding: 6px 10px;
-    font-size: 15px;
+    font-size: 18px;
     color: #1E1863;
     text-decoration: none;
     text-align: center;
@@ -482,8 +496,6 @@ footer {
 .teacher-avatar > a {
     border-radius: 20px;
     background: white;
-    font-size: 1.5em;
-    font-weight: 10;
     text-decoration: none;
     color: black;
 }
@@ -491,17 +503,18 @@ footer {
 .coterie-info {
     height: 220px;
     font-family: "Roboto Slab", serif;
-    font-size: 18px;
+    text-align: justify;
+    font-size: 20px;
     color: #1E1863;
 }
 
 .type-header {
     font-family: "Roboto Slab", serif;
     color: #1E1863;
+    font-size: 24px;
     border-radius: 0 10px 10px 0;
-    font-size: 1.5em;
-    padding:10px 10px 10px 35px;
-    width: 493px;
+    padding:10px 10px 10px 70px;
+    width: 475px;
 }
 
 .day-header{
@@ -517,8 +530,12 @@ footer {
 
 .day-addr-span{
     margin-bottom: 13px;
-    font-size: 20px;
+    font-size: 24px;
     text-decoration: underline;
+}
+
+.blue-shadow{
+    font-size: 20px;
 }
 
 .addr-content{
@@ -547,9 +564,9 @@ footer {
 .modal-join {
     text-decoration: none;
     padding: 1rem;
-    font-family: "Roboto Mono", serif;
-    font-weight: bold;
+    font-family: "Roboto Serif", serif;
     font-size: 20px;
+    font-weight: 700;
     max-height: 2rem;
     background: #BAFFA6;
     color: #1E1863;
@@ -694,5 +711,10 @@ footer {
 
     .coterie-info{
         height: auto;
+    }
+
+    .paper-clip{
+        margin-top: 85px;
+        margin-left: 13px;
     }
 }
