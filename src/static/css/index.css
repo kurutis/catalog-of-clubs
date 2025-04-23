@@ -465,7 +465,7 @@ footer {
 .teacher-avatar {
     background-size: cover;
     background-repeat: no-repeat;
-    height: 450px;
+    height: 550px;
     width: 100%;
 }
 
@@ -501,7 +501,7 @@ footer {
 }
 
 .coterie-info {
-    height: 220px;
+    height: 320px;
     font-family: "Roboto Slab", serif;
     text-align: justify;
     font-size: 20px;
